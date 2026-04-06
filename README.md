@@ -153,11 +153,11 @@ Ambiente de experimentação e aprendizado.
 ---
 
 ## 📸 Preview (em breve)
-
 <p align="center">
-  ![Prototipo 1.1](./imagens/Prototipo%201.1.jpeg)
-  <i>Luva Desativada</i>
-  ![Prototipo 1.2](./imagens/Prototipo%201.2.jpeg
+  <img src="./imagens/Prototipo%201.1.jpeg" width="300"><br>
+  <i>Luva Desativada</i><br><br>
+
+  <img src="./imagens/Prototipo%201.2.jpeg" width="300"><br>
   <i>Luva Ativa</i>
 </p>
 
