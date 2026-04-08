@@ -9,6 +9,19 @@
 
 ---
 
+## 🎯 Propósito
+
+Este projeto nasceu da vontade de unir **eletrônica embarcada com cultura geek**, criando um cosplay do Alphonse Elric (Fullmetal Alchemist) que vai além da aparência visual.
+
+O sistema pode ser usado em:
+
+- 🎪 **Eventos de cosplay e convenções** – efeitos visuais e sonoros reativos ao ambiente
+- 🎓 **Projetos educacionais** – base prática para aprender ESP32, PWM, ESP-NOW e sensores
+- 🔬 **Prototipagem de sistemas embarcados distribuídos** – comunicação entre múltiplos microcontroladores via ESP-NOW
+- 🎮 **Props interativos** – qualquer projeto que precise de ativação por ímã com resposta em LED e áudio
+
+---
+
 ## 🎭 Sobre o Projeto
 
 Este repositório contém toda a parte eletrônica do cosplay do **Alphonse Elric**, com o objetivo de criar uma experiência **imersiva, interativa e tecnológica**.
@@ -29,6 +42,65 @@ flowchart LR
     ESP32 --> Speaker
     ESP32 -->|Futuro| ESPNow
 ```
+
+---
+
+## 🛠️ Pré-requisitos
+
+### Hardware necessário
+
+| Componente        | Descrição                     |
+| ----------------- | ----------------------------- |
+| LED COB 5V        | Fonte de iluminação principal |
+| Resistor 1kΩ      | Controle de sinal / proteção  |
+| Resistor 10kΩ     | Pull-up / pull-down           |
+| MOSFET IRLZ44N    | Controle de carga dos LEDs    |
+| ESP32-C3          | Microcontrolador principal    |
+| Sensor Hall A3144 | Detecção de campo magnético   |
+| Ímã permanente    | Gatilho do sensor Hall        |
+
+### Software necessário
+
+- [Arduino IDE](https://www.arduino.cc/en/software) (versão 2.x recomendada)
+- Suporte ao ESP32 via Boards Manager:
+  - Adicione a URL: `https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json`
+  - Instale o pacote **esp32 by Espressif Systems**
+- Nenhuma biblioteca externa adicional necessária para o código atual
+
+### Como executar
+
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/seu-repositorio.git
+   ```
+2. Abra o arquivo `CodLuvas.ino` na Arduino IDE
+3. Selecione a placa: **ESP32C3 Dev Module**
+4. Selecione a porta COM correta
+5. Faça o upload do código
+
+---
+
+## ⚠️ Erros Comuns e Soluções
+
+### ESP32-C3 não aparece na lista de portas COM
+> **Causa:** Driver USB não instalado.  
+> **Solução:** Instale o driver [CH340](https://www.wch-ic.com/downloads/CH341SER_EXE.html) ou [CP210x](https://www.silabs.com/developers/usb-to-uart-bridge-vcp-drivers) conforme o chip USB do seu módulo.
+
+### Erro ao fazer upload: "Failed to connect to ESP32-C3"
+> **Causa:** O ESP32-C3 não entrou em modo de gravação.  
+> **Solução:** Segure o botão **BOOT** enquanto pressiona **RESET**, depois solte o RESET e em seguida o BOOT. Tente o upload novamente.
+
+### LEDs não acendem mesmo com o ímã presente
+> **Causa:** Polaridade errada do ímã ou sensor Hall invertido.  
+> **Solução:** Inverta o lado do ímã (o A3144 responde apenas ao polo Sul). Verifique também as conexões do MOSFET (Gate, Drain, Source).
+
+### LED pisca de forma errática
+> **Causa:** MOSFET ativando por ruído elétrico.  
+> **Solução:** Confirme que o resistor de 10kΩ está conectado entre Gate e GND (pull-down).
+
+### Código compila, mas ESP-NOW não funciona
+> **Causa:** MAC Address incorreto ou canal Wi-Fi diferente entre os dispositivos.  
+> **Solução:** Use o sketch `GetMacAdress.ino` para capturar o MAC exato de cada ESP32 e atualize no código do mestre.
 
 ---
 
@@ -59,7 +131,6 @@ Ambiente de experimentação e aprendizado.
 | `TestEspNowMestre.ino`  | Envia comandos via ESP-NOW |
 | `TestEspNowEscravo.ino` | Recebe e executa comandos  |
 
-
 ---
 
 ### 💡 LEDs com efeito Fade
@@ -82,16 +153,14 @@ Ambiente de experimentação e aprendizado.
 
 ---
 
-## 🔩 Componentes Utilizados
+## 🔌 Esquema Elétrico
 
-| Componente        | Descrição                     |
-| ----------------- | ----------------------------- |
-| LED COB 5V        | Fonte de iluminação principal |
-| Resistor 1kΩ      | Controle de sinal / proteção  |
-| Resistor 10kΩ     | Pull-up / pull-down           |
-| MOSFET IRLZ44N    | Controle de carga dos LEDs    |
-| ESP32-C3          | Microcontrolador principal    |
-| Sensor Hall A3144 | Detecção de campo magnético   |
+<!-- Substitua a linha abaixo pela imagem do seu esquema elétrico -->
+> 📌 *Diagrama em breve*
+
+<!-- Exemplo de como inserir quando disponível:
+![Esquema Elétrico](./imagens/esquema_eletrico.png)
+-->
 
 ---
 
@@ -152,7 +221,8 @@ Ambiente de experimentação e aprendizado.
 
 ---
 
-## 📸 Preview (em breve)
+## 📸 Preview
+
 <p align="center">
   <img src="./imagens/Prototipo%201.1.jpeg" width="300"><br>
   <i>Luva Desativada</i><br><br>
